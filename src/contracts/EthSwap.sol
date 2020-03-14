@@ -5,7 +5,9 @@ import "./Token.sol";
 contract EthSwap {
   string public name = "EthSwap Instant Exchange";
   Token public token;
-  uint public rate = 1000;
+  uint public rate = 100;
+  uint public buyRateBonus = 112;
+  uint public sellRateEarly = 92;
 
   event TokensPurchased(
     address account,
@@ -27,7 +29,7 @@ contract EthSwap {
 
   function buyTokens() public payable {
     // Calculate the number of tokens to buy
-    uint tokenAmount = msg.value * rate;
+    uint tokenAmount = msg.value * buyRateBonus;
 
     // Require that EthSwap has enough tokens
     require(token.balanceOf(address(this)) >= tokenAmount, 'not enough ether');
@@ -36,7 +38,7 @@ contract EthSwap {
     token.transfer(msg.sender, tokenAmount);
 
     // Emit an event
-    emit TokensPurchased(msg.sender, address(token), tokenAmount, rate);
+    emit TokensPurchased(msg.sender, address(token), tokenAmount, buyRateBonus);
   }
 
   function sellTokens(uint _amount) public {
@@ -44,7 +46,7 @@ contract EthSwap {
     require(token.balanceOf(msg.sender) >= _amount, 'not enough tokens');
 
     // Calculate the amount of Ether to redeem
-    uint etherAmount = _amount / rate;
+    uint etherAmount = _amount / buyRateBonus;
 
     // Require that EthSwap has enough Ether
     require(address(this).balance >= etherAmount, 'exchange does not have enough ether');
@@ -54,7 +56,7 @@ contract EthSwap {
     msg.sender.transfer(etherAmount);
 
     // Emit an event
-    emit TokensSold(msg.sender, address(token), _amount, rate);
+    emit TokensSold(msg.sender, address(token), _amount, sellRateEarly);
   }
 
 }

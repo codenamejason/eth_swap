@@ -31,7 +31,7 @@ class SellForm extends Component {
             onChange={(event) => {
               const tokenAmount = this.input.value.toString()
               this.setState({
-                output: tokenAmount / 1000
+                output: tokenAmount / 112 // so there is no incentive to buy and then immediately sell!
               })
             }}
             ref={(input) => { this.input = input }}
@@ -69,7 +69,7 @@ class SellForm extends Component {
         </div>
         <div className="mb-5">
           <span className="float-left text-muted">Exchange Rate</span>
-          <span className="float-right text-muted">1000 HBT = 1 ETH</span>
+          <span className="float-right text-muted">100 HBT = 1 ETH</span>
         </div>
         <button type="submit" className="btn btn-primary btn-block btn-lg">EXCHANGE</button>
       </form>
