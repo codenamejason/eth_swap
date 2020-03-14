@@ -5,7 +5,7 @@ import "./Token.sol";
 contract EthSwap {
   string public name = "EthSwap Instant Exchange";
   Token public token;
-  uint public rate = 100;
+  uint public rate = 1000;
 
   event TokensPurchased(
     address account,
@@ -30,7 +30,7 @@ contract EthSwap {
     uint tokenAmount = msg.value * rate;
 
     // Require that EthSwap has enough tokens
-    require(token.balanceOf(address(this)) >= tokenAmount);
+    require(token.balanceOf(address(this)) >= tokenAmount, 'not enough ether');
 
     // Transfer tokens to the user
     token.transfer(msg.sender, tokenAmount);
@@ -41,13 +41,13 @@ contract EthSwap {
 
   function sellTokens(uint _amount) public {
     // User can't sell more tokens than they have
-    require(token.balanceOf(msg.sender) >= _amount);
+    require(token.balanceOf(msg.sender) >= _amount, 'not enough tokens');
 
     // Calculate the amount of Ether to redeem
     uint etherAmount = _amount / rate;
 
     // Require that EthSwap has enough Ether
-    require(address(this).balance >= etherAmount);
+    require(address(this).balance >= etherAmount, 'exchange does not have enough ether');
 
     // Perform sale
     token.transferFrom(msg.sender, address(this), _amount);

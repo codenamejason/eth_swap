@@ -56,9 +56,7 @@ class Main extends Component {
             {content}
 
           </div>
-
         </div>
-
       </div>
     );
   }

@@ -22,7 +22,7 @@ contract('EthSwap', ([deployer, investor]) => {
   describe('Token deployment', async () => {
     it('contract has a name', async () => {
       const name = await token.name()
-      assert.equal(name, 'DApp Token')
+      assert.equal(name, 'HarvestByte Token')
     })
   })
 

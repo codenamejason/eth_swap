@@ -1,9 +1,9 @@
 pragma solidity ^0.5.0;
 
 contract Token {
-    string  public name = "DApp Token";
-    string  public symbol = "DAPP";
-    uint256 public totalSupply = 1000000000000000000000000; // 1 million tokens
+    string  public name = "HarvestByte Token";
+    string  public symbol = "HBT";
+    uint256 public totalSupply = 1000000000000000000000000000; // 1 billion tokens
     uint8   public decimals = 18;
 
     event Transfer(
@@ -26,7 +26,7 @@ contract Token {
     }
 
     function transfer(address _to, uint256 _value) public returns (bool success) {
-        require(balanceOf[msg.sender] >= _value);
+        require(balanceOf[msg.sender] >= _value, 'not enough ether');
         balanceOf[msg.sender] -= _value;
         balanceOf[_to] += _value;
         emit Transfer(msg.sender, _to, _value);
@@ -40,8 +40,8 @@ contract Token {
     }
 
     function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
-        require(_value <= balanceOf[_from]);
-        require(_value <= allowance[_from][msg.sender]);
+        require(_value <= balanceOf[_from], 'not enough ether');
+        require(_value <= allowance[_from][msg.sender], 'over allowance');
         balanceOf[_from] -= _value;
         balanceOf[_to] += _value;
         allowance[_from][msg.sender] -= _value;

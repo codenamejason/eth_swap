@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import tokenLogo from '../token-logo.png'
+import tokenLogo from '../inetLogo.png'
 import ethLogo from '../eth-logo.png'
 
 class BuyForm extends Component {
@@ -31,7 +31,7 @@ class BuyForm extends Component {
             onChange={(event) => {
               const etherAmount = this.input.value.toString()
               this.setState({
-                output: etherAmount * 100
+                output: etherAmount * 1000
               })
             }}
             ref={(input) => { this.input = input }}
@@ -61,16 +61,16 @@ class BuyForm extends Component {
           />
           <div className="input-group-append">
             <div className="input-group-text">
-              <img src={tokenLogo} height='32' alt=""/>
-              &nbsp; DApp
+              <img src={tokenLogo} height='32' alt="HarvestByte Token Logo"/>
+              &nbsp; HBT
             </div>
           </div>
         </div>
         <div className="mb-5">
           <span className="float-left text-muted">Exchange Rate</span>
-          <span className="float-right text-muted">1 ETH = 100 DApp</span>
+          <span className="float-right text-muted">1 ETH = 1000 HBT</span>
         </div>
-        <button type="submit" className="btn btn-primary btn-block btn-lg">SWAP!</button>
+        <button type="submit" className="btn btn-primary btn-block btn-lg">EXCHANGE</button>
       </form>
     );
   }

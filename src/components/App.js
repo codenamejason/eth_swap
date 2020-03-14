@@ -5,6 +5,7 @@ import EthSwap from '../abis/EthSwap.json'
 import Navbar from './Navbar'
 import Main from './Main'
 import './App.css'
+import BN from 'bn.js'
 
 class App extends Component {
 
@@ -78,6 +79,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      user: {},
       account: '',
       token: {},
       ethSwap: {},
@@ -107,13 +109,7 @@ class App extends Component {
           <div className="row">
             <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '600px' }}>
               <div className="content mr-auto ml-auto">
-                <a
-                  href="http://www.dappuniversity.com/bootcamp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                </a>
-
+                
                 {content}
 
               </div>
