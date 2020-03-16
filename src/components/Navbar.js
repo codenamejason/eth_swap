@@ -12,7 +12,7 @@ class Navbar extends Component {
           target="_blank"
           rel="noopener noreferrer"
         >
-          HarvestByte Token Exchange
+          US Forestry Token Exchange
         </a>
 
         <ul className="navbar-nav px-3">

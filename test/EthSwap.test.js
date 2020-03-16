@@ -22,7 +22,7 @@ contract('EthSwap', ([deployer, investor, investor2]) => {
   describe('Token deployment', async () => {
     it('contract has a name', async () => {
       const name = await token.name()
-      assert.equal(name, 'HarvestByte Token')
+      assert.equal(name, 'US Forestry Token')
     })
   })
 
@@ -43,13 +43,13 @@ contract('EthSwap', ([deployer, investor, investor2]) => {
 
     before(async () => {
       // Purchase tokens before each example
-      result = await ethSwap.buyTokens({ from: investor2, value: web3.utils.toWei('1', 'ether')})
+      result = await ethSwap.buyTokens({ from: investor, value: web3.utils.toWei('1', 'ether')})
     })
 
     it('Allows user to instantly purchase tokens from ethSwap for a fixed price', async () => {
       // Check investor token balance after purchase
-      let investorBalance = await token.balanceOf(investor2)
-      assert.equal(investorBalance.toString(), tokens('100'))
+      let investorBalance = await token.balanceOf(investor)
+      assert.equal(investorBalance.toString(), tokens('112'))
 
       // Check ethSwap balance after purchase
       let ethSwapBalance
@@ -60,10 +60,10 @@ contract('EthSwap', ([deployer, investor, investor2]) => {
 
       // Check logs to ensure event was emitted with correct data
       const event = result.logs[0].args
-      assert.equal(event.account, investor2)
+      assert.equal(event.account, investor)
       assert.equal(event.token, token.address)
-      assert.equal(event.amount.toString(), tokens('100').toString())
-      assert.equal(event.rate.toString(), '100')
+      assert.equal(event.amount.toString(), tokens('112').toString())
+      assert.equal(event.rate.toString(), '112')
     })
   })
 
