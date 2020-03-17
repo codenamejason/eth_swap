@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import tokenLogo from '../inetLogo.png'
+import tokenLogo from '../images/usf-logo-1.jpg'
 import ethLogo from '../eth-logo.png'
 
 class BuyForm extends Component {

@@ -1,1 +1,5 @@
 /* Styles go here */
+body {
+    background-color: green;
+    background-image: url('../images/usf-background.jpg');
+}

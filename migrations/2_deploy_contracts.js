@@ -2,6 +2,9 @@ const Token = artifacts.require("Token");
 const EthSwap = artifacts.require("EthSwap");
 
 module.exports = async function(deployer) {
+  let _name = "US Forestry Token";
+  let _symbol = "USF";
+  let _decimals = 18;
   // Deploy Token
   await deployer.deploy(Token);
   const token = await Token.deployed()

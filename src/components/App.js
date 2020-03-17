@@ -91,6 +91,7 @@ class App extends Component {
 
   render() {
     let content
+    // If loading show the loading screen.. Currently Loading...
     if(this.state.loading) {
       content = <p id="loader" className="text-center">Loading...</p>
     } else {
